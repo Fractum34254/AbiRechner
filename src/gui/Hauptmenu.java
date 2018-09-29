@@ -17,8 +17,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionListener;
 
 
 
@@ -126,17 +124,17 @@ public class Hauptmenu {
 	file.add(exit);
 	    
 	//Items in Edit
-	JMenuItem rueck = new JMenuItem("Rï¿½ckgï¿½ngig");
+	JMenuItem rueck = new JMenuItem("Rückgängig");
 	edit.add(rueck);
 	JMenuItem wied = new JMenuItem("Wiederherstellen");
 	edit.add(wied);
-	JMenuItem lÃ¶ = new JMenuItem("Lï¿½schen");
-	edit.add(lÃ¶);
+	JMenuItem lö = new JMenuItem("Löschen");
+	edit.add(lö);
 	JMenuItem kop = new JMenuItem("Kopieren");
 	edit.add(kop);
-	JMenuItem einf = new JMenuItem("Einfï¿½gen");
+	JMenuItem einf = new JMenuItem("Einfügen");
 	edit.add(einf);
-	JMenuItem ausw = new JMenuItem("Alles auswï¿½hlen");
+	JMenuItem ausw = new JMenuItem("Alles auswählen");
 	edit.add(ausw);
 	  
 	//Items in Help
@@ -202,12 +200,12 @@ public class Hauptmenu {
     	});
 	    
 	//Lï¿½schenItem
-	lÃ¶.addActionListener(new ActionListener(){;
+	lö.addActionListener(new ActionListener(){;
     	public void actionPerformed(ActionEvent e){
             int i=table.getSelectedRow();
             if(i>=0){
-    		table.removeAll(); // kurzzeitig gelï¿½scht aber nach zellenwechsel wieder da -> muss direkt neu ï¿½berschrieben werden - Lukas
-    			//hier ï¿½berschreiben? - Lukas
+    		table.removeAll(); // kurzzeitig gelöscht aber nach zellenwechsel wieder da -> muss direkt neu überschrieben werden - Lukas
+    			//hier überschreiben? - Lukas
             }
             else{
     		System.out.println("Keine vorhandenen Daten, die gelï¿½scht werden kï¿½nnen");
@@ -216,7 +214,7 @@ public class Hauptmenu {
     	});
 	    
 	    
-	//AllesAuswï¿½hlenItem
+	//AllesAuswählenItem
     	ausw.addFocusListener(new FocusListener(){	
             public void focusGained(FocusEvent e) {
 		table.selectAll(); // es soll wenn fertig allen Inhalt der Tabelle markieren - Lukas
@@ -241,13 +239,13 @@ public class Hauptmenu {
         frame2.setVisible(false); 
 	    
 
-	//LanguageFenster ï¿½ffnen (frame 2)
+	//LanguageFenster öffnen (frame 2)
 	language.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent arg0) {
             frame2.setVisible(true);
 	}});
         
-        //Neue Rechnung ï¿½ffnen (frame 3)
+        //Neue Rechnung öffnen (frame 3)
 	anew.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent arg0) {
             frame3.setVisible(true);
