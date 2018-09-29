@@ -17,123 +17,65 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionListener;
+
+
+
 
 
 public class Hauptmenu {
 
-
-	public static void main(String[] args) {
+        static final int x = 21; 
+        static final int y = 29;
+        static JTable table = new JTable(x,y);
+       	public static void main(String[] args) {
+                //Fenster erschaffen
 		final JFrame frame1 = new JFrame("ABI-Rechner");		
 		final JFrame frame2 = new JFrame("Sprache");
-		final JFrame frame3 = new JFrame("Rechnung");
+		final JFrame frame3 = new JFrame("Neu");
 		final JFrame frame4 = new JFrame("Direkthilfe");
-		
-		/*hier nicht gleich alle Fenstergrößen und -positionen einfügen, 
-		um diese nicht bei jedem Klick auf ein Intem neu zu berechnen?
-		--> veränderbare, im Hintergrund gespeicherte Fenstergrößen! (für die Pop-Up-Fenster) - Philipp */
-	
+                
+                //Eigenschaften
+                //Hauptfenster
+		frame1.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame1.setSize(1920, 1080);
+		frame1.setLocationRelativeTo(null);
+		frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame1.setVisible(true);
+                //Sprache
+		frame2.setSize(500, 100);
+		frame2.setLocationRelativeTo(null);
+                //Neu
+                frame3.setSize(960, 540); 			
+                frame3.setLocationRelativeTo(null);     
+                frame3.setVisible(false); 
+                //Hilfe
+                frame4.setSize(960, 540); 					
+    		frame4.setLocationRelativeTo(null);
+			
 		//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::://
 		
-		//Menü
-			// MenuBar
-	    	JMenuBar menu = new JMenuBar();
-	    	
-	    	// Menu
-	    	JMenu file = new JMenu("Menü");
-	    	menu.add(file);
-	    	frame1.setJMenuBar(menu);			//notwendig? - Philipp
-	    	
-	    	// Edit
-	    	JMenu edit = new JMenu("Bearbeiten");
-	    	menu.add(edit);
-	    	frame1.setJMenuBar(menu);			//notwendig? - Philipp
-	    	
-	    	// Help
-	    	JMenu help = new JMenu("Hilfe");
-	    	menu.add(help);
-	    	frame1.setJMenuBar(menu);
-	    
-	    	
-	    	
-	    //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::://	
-	    	
-	    	
-	    	
-	    //Items in Menu
-	    JMenuItem anew = new JMenuItem("Neu");
-	    file.add(anew);
-	    JMenuItem open = new JMenuItem("Öffnen");
-	    file.add(open);
-	    JMenuItem print = new JMenuItem("Drucken");
-	    file.add(print);
-	    JMenuItem language = new JMenuItem("Sprache");
-	    file.add(language);
-	    JMenuItem exit = new JMenuItem("Verlassen");
-	    file.add(exit);
-	    
-	    //Items in Edit
-	    JMenuItem rueck = new JMenuItem("Rückgängig");
-	    edit.add(rueck);
-	    JMenuItem wied = new JMenuItem("Wiederherstellen");
-	    edit.add(wied);
-	    JMenuItem lö = new JMenuItem("Löschen");
-	    edit.add(lö);
-	    JMenuItem kop = new JMenuItem("Kopieren");
-	    edit.add(kop);
-	    JMenuItem einf = new JMenuItem("Einfügen");
-	    edit.add(einf);
-	    JMenuItem ausw = new JMenuItem("Alles auswählen");
-	    edit.add(ausw);
-	    
-	    //Items in Help
-	    JMenuItem helping = new JMenuItem("Direkthilfe");
-	    help.add(helping);
-	    JMenuItem webseite = new JMenuItem("Webseite");
-	    help.add(webseite);
-	    
-	    
-	    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::://
-	    
-	    
-	    // WebseiteItem
-	    webseite.addActionListener(new ActionListener(){;
-	    	public void actionPerformed(ActionEvent e){
-	    		Desktop desktop = Desktop.getDesktop();
-	    		URI uri;
-	    		try{
-	    			uri = new URI("https://www.lgd.de/");
-	    			desktop.browse(uri);} 
-	    		catch (Exception oError) {
-	    			oError.printStackTrace();} 
-	    		}
-	    	});
-	    
-	    //DirekthilfeItem
-	    helping.addActionListener(new ActionListener(){;
-    	public void actionPerformed(ActionEvent e){
-    		    frame4.setSize(960, 540); 					
-    		    frame4.setLocationRelativeTo(null);
-    	        frame4.setVisible(true);}});
-	    
-	    //ExitItem
-	    exit.addActionListener(new ActionListener(){
-	    	public void actionPerformed(ActionEvent e){
-	    		System.exit(0);}});
-	    
-	    //Neu-Inhalt
-	    frame3.setSize(960, 540); 						//die folgenden Zeilen nicht oben deklarieren? 
-	    frame3.setLocationRelativeTo(null);				//erhöht die Übersichtlichkeit - Philipp
-        frame3.setVisible(false); 
-        int x = 21; int y = 29;
-	    JTable table = new JTable(x,y);
-	    frame1.add(table);  // frame1.add(table); -> Auf Startbildschirm wir Tabelle auch angezeigt -> sonst nur bei Neu frame3.add(table); - Lukas
-	    
-	    //TESTCODE-ANFANG - Philipp ================================================================================//
-	    
-	    //Zellschutz fehlt noch!!
-	    table.setValueAt("Fach", 1,0 );
-	    table.setValueAt("Leistungskurs?", 1,1 );
-	    table.setValueAt("Prüfung?", 1,2 );
+                //Tabelle
+                frame1.add(table);  
+                // frame1.add(table); 
+                //-> Auf Startbildschirm wir Tabelle auch angezeigt 
+                //-> sonst nur bei Neu frame3.add(table); - Lukas
+                
+                //Zellschutz fehlt noch!!
+            
+                
+            
+	    table.setValueAt("LK / GK", 1,0 );
+            table.setValueAt("LK", 2, 0);
+            table.setValueAt("LK", 3, 0);
+            table.setValueAt("GK", 4, 0);
+            table.setValueAt("GK", 5, 0);
+            table.setValueAt("GK", 6, 0);
+            table.setValueAt("GK", 7, 0);
+	    table.setValueAt("Fach", 1,1 );
+	    table.setValueAt("PrÃ¼fung?", 1,2 );
+            table.setValueAt("\u2713", 2,2 ); //schmales HÃ¤kchen (fettes: \u2714)
 	    table.setValueAt("Semester 11/I", 0,3 );
 	    table.setValueAt("Semester 11/II", 0,9 );
 	    table.setValueAt("Semester 12/I", 0,15 );
@@ -149,63 +91,147 @@ public class Hauptmenu {
 	    table.setValueAt("Fachschnitt", 1, 27);
 	    table.setValueAt("Summe der eingebrachten Punkte", 1, 28);
 	    table.doLayout(); //warum werden die Spalten nicht angepasst?
+                
+                //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::://
+                
+		//MenÃ¼ Grundbausteine
+                // MenuBar
+	    	JMenuBar menu = new JMenuBar();
+	    	
+	    	// Menu
+	    	JMenu file = new JMenu("Menï¿½");
+	    	menu.add(file);		
+	    	
+	    	// Edit
+	    	JMenu edit = new JMenu("Bearbeiten");
+	    	menu.add(edit);		
+                    
+	    	// Help
+	    	JMenu help = new JMenu("Hilfe");
+	    	menu.add(help);
+	    	frame1.setJMenuBar(menu);
+                
+        //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::://	
 	    
-	    //TESTCODE-ENDE - Philipp =============================================================================//
+	//Items in Menu
+	JMenuItem anew = new JMenuItem("Neu");
+	file.add(anew);
+	JMenuItem open = new JMenuItem("ï¿½ffnen");
+	file.add(open);
+	JMenuItem print = new JMenuItem("Drucken");
+	file.add(print);
+	JMenuItem language = new JMenuItem("Sprache");
+        file.add(language);
+	JMenuItem exit = new JMenuItem("Verlassen");
+	file.add(exit);
 	    
-	    //Einfügen
-	    einf.addActionListener(new ActionListener(){;
+	//Items in Edit
+	JMenuItem rueck = new JMenuItem("Rï¿½ckgï¿½ngig");
+	edit.add(rueck);
+	JMenuItem wied = new JMenuItem("Wiederherstellen");
+	edit.add(wied);
+	JMenuItem lÃ¶ = new JMenuItem("Lï¿½schen");
+	edit.add(lÃ¶);
+	JMenuItem kop = new JMenuItem("Kopieren");
+	edit.add(kop);
+	JMenuItem einf = new JMenuItem("Einfï¿½gen");
+	edit.add(einf);
+	JMenuItem ausw = new JMenuItem("Alles auswï¿½hlen");
+	edit.add(ausw);
+	  
+	//Items in Help
+	JMenuItem helping = new JMenuItem("Direkthilfe");
+	help.add(helping);
+	JMenuItem webseite = new JMenuItem("Webseite");
+	help.add(webseite);
+	    
+	    
+	//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::://
+	    
+	//Klick-Listener fÃ¼r Checkmarks (Spalte 3 bzw 2)
+       /*ListSelectionModel newmodel = table.getSelectionModel(); 
+        newmodel.addListSelectionListener(new ListSelectionListener() { 
+        public void valueChanged(ListSelectionEvent e) { 
+            int row = table.getSelectedRow(); 
+            int column = table.getSelectedColumn(); 
+        int cell = getNewNum(); 
+        datefield.setText(String.valueOf(cell)); 
+    } 
+});
+}); */ 
+        
+        
+	// WebseiteItem
+	webseite.addActionListener(new ActionListener(){;
+            public void actionPerformed(ActionEvent e){
+                Desktop desktop = Desktop.getDesktop();
+	    	URI uri;
+	    	try{
+                    uri = new URI("https://www.lgd.de/");
+                    desktop.browse(uri);} 
+	    		catch (Exception oError) {
+                            oError.printStackTrace();} 
+	    		}
+	    	});
+	    
+	//DirekthilfeItem
+	helping.addActionListener(new ActionListener(){;
+            public void actionPerformed(ActionEvent e){    
+    	        frame4.setVisible(true);}});
+	    
+	//ExitItem
+	exit.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                System.exit(0);}});
+	    
+	//Einfï¿½gen
+	einf.addActionListener(new ActionListener(){;
     	public void actionPerformed(ActionEvent e){
 	    try {
 	    	SystemClipboard.paste();} 
 	    catch (AWTException e1) {
 			e1.printStackTrace();}
-			}
+            }
     	});
 	    
-	    //Kopieren
-	    kop.addActionListener(new ActionListener(){;
+	//Kopieren
+	kop.addActionListener(new ActionListener(){;
+            public void actionPerformed(ActionEvent e){
+                SystemClipboard.copy(null); // statt null -> Zelleninhalt - Lukas
+            }
+    	});
+	    
+	//Lï¿½schenItem
+	lÃ¶.addActionListener(new ActionListener(){;
     	public void actionPerformed(ActionEvent e){
-    		SystemClipboard.copy(null); // statt null -> Zelleninhalt - Lukas
-			}
-    	});
-	    
-	    //LöschenItem
-	    lö.addActionListener(new ActionListener(){;
-    	public void actionPerformed(ActionEvent e){
-    		int i=table.getSelectedRow();
-    		if(i>=0){
-    			table.removeAll(); // kurzzeitig gelöscht aber nach zellenwechsel wieder da -> muss direkt neu überschrieben werden - Lukas
-    			//hier überschreiben? - Lukas
+            int i=table.getSelectedRow();
+            if(i>=0){
+    		table.removeAll(); // kurzzeitig gelï¿½scht aber nach zellenwechsel wieder da -> muss direkt neu ï¿½berschrieben werden - Lukas
+    			//hier ï¿½berschreiben? - Lukas
+            }
+            else{
+    		System.out.println("Keine vorhandenen Daten, die gelï¿½scht werden kï¿½nnen");
     		}
-    		else{
-    			System.out.println("Keine vorhandenen Daten, die gelöscht werden können");
-    		}
-			}
+            }
     	});
 	    
 	    
-	    //AllesAuswählenItem
+	//AllesAuswï¿½hlenItem
     	ausw.addFocusListener(new FocusListener(){	
-			public void focusGained(FocusEvent e) {
-				table.selectAll(); // es soll wenn fertig allen Inhalt der Tabelle markieren - Lukas
-			}
+            public void focusGained(FocusEvent e) {
+		table.selectAll(); // es soll wenn fertig allen Inhalt der Tabelle markieren - Lukas
+            }
 			
-			public void focusLost(FocusEvent e) {	
-			}	
+            public void focusLost(FocusEvent e) {	
+            }	
     	});
 	    
-	    //Neue Rechnung öffnen
-	  		final WindowEventHandler handler1 = new WindowEventHandler(frame1, frame3);
-	  		anew.addActionListener(new ActionListener() {
-	  			public void actionPerformed(ActionEvent arg0) {
-	  				frame1.setVisible(false); //warum? Finde es besser, wenn Hauptfenster immer geöffnet bleibt - Philipp
-	  				frame3.setVisible(true);
-	  			}});
+	
 	    
-	    //LanguageFenster Inhalt 
-	    JList<?> liste; 
-	    JPanel einPanel; 
-	    JListModel model = new JListModel(); 
+	//LanguageFenster Inhalt 
+	JList<?> liste; 
+	JPanel einPanel; 
+	JListModel model = new JListModel(); 
         einPanel = new JPanel(new GridLayout(1, 2));  
         liste = new JList<Object>(model); 
         JScrollPane sp = new JScrollPane(liste); 
@@ -215,33 +241,26 @@ public class Hauptmenu {
         frame2.setVisible(false); 
 	    
 
-		//LanguageFenster öffnen
-		final WindowEventHandler handler2 = new WindowEventHandler(frame1, frame2);
-		language.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				frame1.setVisible(false);
-				frame2.setVisible(true);
-			}});
+	//LanguageFenster ï¿½ffnen (frame 2)
+	language.addActionListener(new ActionListener() {
+	public void actionPerformed(ActionEvent arg0) {
+            frame2.setVisible(true);
+	}});
+        
+        //Neue Rechnung ï¿½ffnen (frame 3)
+	anew.addActionListener(new ActionListener() {
+	public void actionPerformed(ActionEvent arg0) {
+            frame3.setVisible(true);
+	}});
 		
 		
+            // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: //
 		
-		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: //
 		
-		
-
-		//Eigenschaften
-		frame1.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		frame1.setSize(1920, 1080);
-		frame1.setLocationRelativeTo(null);
-		frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame1.setVisible(true);
-		frame2.setSize(500, 100);
-		frame2.addWindowListener(handler2);
-		frame2.setLocationRelativeTo(null);
-		frame3.addWindowListener(handler1);
-		// für frame 4 auch WindowListener? - Lukas
-    	
-
+            
+	    
+	    
+	    
 	}	
 }
 

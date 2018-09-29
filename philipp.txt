@@ -1,0 +1,11 @@
+ListSelectionModel newmodel = mytable.getSelectionModel(); 
+newmodel.addListSelectionListener(new ListSelectionListener() { 
+    @Override 
+    public void valueChanged(ListSelectionEvent e) { 
+     int row = mytable.getSelectedRow(); 
+     int column = mytable.getSelectedColumn(); 
+
+     int cell = getNewNum(); 
+     datefield.setText(String.valueOf(cell)); 
+    } 
+});
