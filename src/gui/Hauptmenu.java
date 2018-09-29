@@ -24,90 +24,90 @@ import javax.swing.JTable;
 
 public class Hauptmenu {
 
-        static final int x = 21; 
-        static final int y = 29;
-        static JTable table = new JTable(x,y);
-       	public static void main(String[] args) {
-                //Fenster erschaffen
-		final JFrame frame1 = new JFrame("ABI-Rechner");		
-		final JFrame frame2 = new JFrame("Sprache");
-		final JFrame frame3 = new JFrame("Neu");
-		final JFrame frame4 = new JFrame("Direkthilfe");
-                
-                //Eigenschaften
-                //Hauptfenster
-		frame1.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		frame1.setSize(1920, 1080);
-		frame1.setLocationRelativeTo(null);
-		frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame1.setVisible(true);
-                //Sprache
-		frame2.setSize(500, 100);
-		frame2.setLocationRelativeTo(null);
-                //Neu
-                frame3.setSize(960, 540); 			
-                frame3.setLocationRelativeTo(null);     
-                frame3.setVisible(false); 
-                //Hilfe
-                frame4.setSize(960, 540); 					
-    		frame4.setLocationRelativeTo(null);
-			
-		//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::://
-		
-                //Tabelle
-                frame1.add(table);  
-                // frame1.add(table); 
-                //-> Auf Startbildschirm wir Tabelle auch angezeigt 
-                //-> sonst nur bei Neu frame3.add(table); - Lukas
-                
-                //Zellschutz fehlt noch!!
+    static final int x = 21; 
+    static final int y = 29;
+    static JTable table = new JTable(x,y);
+    public static void main(String[] args) {
+    //Fenster erschaffen
+	final JFrame frame1 = new JFrame("ABI-Rechner");		
+	final JFrame frame2 = new JFrame("Sprache");
+	final JFrame frame3 = new JFrame("Neu");
+	final JFrame frame4 = new JFrame("Direkthilfe");
             
-                
-            
-	    table.setValueAt("LK / GK", 1,0 );
-            table.setValueAt("LK", 2, 0);
-            table.setValueAt("LK", 3, 0);
-            table.setValueAt("GK", 4, 0);
-            table.setValueAt("GK", 5, 0);
-            table.setValueAt("GK", 6, 0);
-            table.setValueAt("GK", 7, 0);
-	    table.setValueAt("Fach", 1,1 );
-	    table.setValueAt("PrÃ¼fung?", 1,2 );
-            table.setValueAt("\u2713", 2,2 ); //schmales HÃ¤kchen (fettes: \u2714)
-	    table.setValueAt("Semester 11/I", 0,3 );
-	    table.setValueAt("Semester 11/II", 0,9 );
-	    table.setValueAt("Semester 12/I", 0,15 );
-	    table.setValueAt("Semester 12/II", 0,21 );
-	    table.setValueAt("Klausuren", 1,3 );
-	    table.setValueAt("sonstige Noten", 1,5 );
-	    table.setValueAt("Klausuren", 1,9 );
-	    table.setValueAt("sonstige Noten", 1,11 );
-	    table.setValueAt("Klausuren", 1,15 );
-	    table.setValueAt("sonstige Noten", 1,17 );
-	    table.setValueAt("Klausuren", 1,21 );
-	    table.setValueAt("sonstige Noten", 1,23 );
-	    table.setValueAt("Fachschnitt", 1, 27);
-	    table.setValueAt("Summe der eingebrachten Punkte", 1, 28);
-	    table.doLayout(); //warum werden die Spalten nicht angepasst?
-                
-                //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::://
-                
-		//MenÃ¼ Grundbausteine
-                // MenuBar
-	    	JMenuBar menu = new JMenuBar();
-	    	
-	    	// Menu
-	    	JMenu file = new JMenu("Menï¿½");
-	    	menu.add(file);		
-	    	
-	    	// Edit
-	    	JMenu edit = new JMenu("Bearbeiten");
-	    	menu.add(edit);		
-                    
-	    	// Help
-	    	JMenu help = new JMenu("Hilfe");
-	    	menu.add(help);
-	    	frame1.setJMenuBar(menu);
+    //Eigenschaften
+    //Hauptfenster
+	frame1.setExtendedState(JFrame.MAXIMIZED_BOTH);
+	frame1.setSize(1920, 1080);
+	frame1.setLocationRelativeTo(null);
+	frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	frame1.setVisible(true);
+    //Sprache
+	frame2.setSize(500, 100);
+	frame2.setLocationRelativeTo(null);
+    //Neu
+    frame3.setSize(960, 540); 			
+    frame3.setLocationRelativeTo(null);     
+    frame3.setVisible(false); 
+    //Hilfe
+    frame4.setSize(960, 540); 					
+    frame4.setLocationRelativeTo(null);
+	
+//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::://
+
+    //Tabelle
+    frame1.add(table);  
+    // frame1.add(table); 
+    //-> Auf Startbildschirm wir Tabelle auch angezeigt 
+    //-> sonst nur bei Neu frame3.add(table); - Lukas
+    
+    //Zellschutz fehlt noch!!
+    
+    
+    
+	table.setValueAt("LK / GK", 1,0 );
+    table.setValueAt("LK", 2, 0);
+    table.setValueAt("LK", 3, 0);
+    table.setValueAt("GK", 4, 0);
+    table.setValueAt("GK", 5, 0);
+    table.setValueAt("GK", 6, 0);
+    table.setValueAt("GK", 7, 0);
+	table.setValueAt("Fach", 1,1 );
+	table.setValueAt("Prüfung?", 1,2 );
+    table.setValueAt("\u2713", 2,2 ); //schmales Häkchen (fettes: \u2714)
+	table.setValueAt("Semester 11/I", 0,3 );
+	table.setValueAt("Semester 11/II", 0,9 );
+	table.setValueAt("Semester 12/I", 0,15 );
+	table.setValueAt("Semester 12/II", 0,21 );
+	table.setValueAt("Klausuren", 1,3 );
+	table.setValueAt("sonstige Noten", 1,5 );
+	table.setValueAt("Klausuren", 1,9 );
+	table.setValueAt("sonstige Noten", 1,11 );
+	table.setValueAt("Klausuren", 1,15 );
+	table.setValueAt("sonstige Noten", 1,17 );
+	table.setValueAt("Klausuren", 1,21 );
+	table.setValueAt("sonstige Noten", 1,23 );
+	table.setValueAt("Fachschnitt", 1, 27);
+	table.setValueAt("Summe der eingebrachten Punkte", 1, 28);
+	table.doLayout(); //warum werden die Spalten nicht angepasst?
+             
+             //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::://
+             
+	//MenÃ¼ Grundbausteine
+             // MenuBar
+	JMenuBar menu = new JMenuBar();
+	
+	// Menu
+	JMenu file = new JMenu("Menï¿½");
+	menu.add(file);		
+	
+	// Edit
+	JMenu edit = new JMenu("Bearbeiten");
+	menu.add(edit);		
+             
+	// Help
+	JMenu help = new JMenu("Hilfe");
+	menu.add(help);
+	frame1.setJMenuBar(menu);
                 
         //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::://	
 	    
@@ -119,7 +119,7 @@ public class Hauptmenu {
 	JMenuItem print = new JMenuItem("Drucken");
 	file.add(print);
 	JMenuItem language = new JMenuItem("Sprache");
-        file.add(language);
+    file.add(language);
 	JMenuItem exit = new JMenuItem("Verlassen");
 	file.add(exit);
 	    
@@ -146,7 +146,7 @@ public class Hauptmenu {
 	    
 	//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::://
 	    
-	//Klick-Listener fÃ¼r Checkmarks (Spalte 3 bzw 2)
+	//Klick-Listener für Checkmarks (Spalte 3 bzw 2)
        /*ListSelectionModel newmodel = table.getSelectionModel(); 
         newmodel.addListSelectionListener(new ListSelectionListener() { 
         public void valueChanged(ListSelectionEvent e) { 
@@ -199,7 +199,7 @@ public class Hauptmenu {
             }
     	});
 	    
-	//Lï¿½schenItem
+	//LöschenItem
 	lö.addActionListener(new ActionListener(){;
     	public void actionPerformed(ActionEvent e){
             int i=table.getSelectedRow();
@@ -215,28 +215,27 @@ public class Hauptmenu {
 	    
 	    
 	//AllesAuswählenItem
-    	ausw.addFocusListener(new FocusListener(){	
-            public void focusGained(FocusEvent e) {
-		table.selectAll(); // es soll wenn fertig allen Inhalt der Tabelle markieren - Lukas
-            }
-			
-            public void focusLost(FocusEvent e) {	
-            }	
-    	});
-	    
+	ausw.addFocusListener(new FocusListener(){	
+		public void focusGained(FocusEvent e) {
+			table.selectAll(); // es soll wenn fertig allen Inhalt der Tabelle markieren - Lukas
+	    }
+        public void focusLost(FocusEvent e) {
+        	
+        }});
+		
 	
 	    
 	//LanguageFenster Inhalt 
 	JList<?> liste; 
 	JPanel einPanel; 
 	JListModel model = new JListModel(); 
-        einPanel = new JPanel(new GridLayout(1, 2));  
-        liste = new JList<Object>(model); 
-        JScrollPane sp = new JScrollPane(liste); 
-        frame2.getContentPane().add(einPanel, BorderLayout.NORTH); 
-        frame2.getContentPane().add(sp, BorderLayout.CENTER);  
-        frame2.setSize(300, 200); 
-        frame2.setVisible(false); 
+    einPanel = new JPanel(new GridLayout(1, 2));  
+    liste = new JList<Object>(model); 
+    JScrollPane sp = new JScrollPane(liste); 
+    frame2.getContentPane().add(einPanel, BorderLayout.NORTH); 
+    frame2.getContentPane().add(sp, BorderLayout.CENTER);  
+    frame2.setSize(300, 200); 
+    frame2.setVisible(false); 
 	    
 
 	//LanguageFenster öffnen (frame 2)
@@ -252,7 +251,7 @@ public class Hauptmenu {
 	}});
 		
 		
-            // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: //
+    // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: //
 		
 		
             
