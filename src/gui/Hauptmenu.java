@@ -1,8 +1,11 @@
 package gui;
+import static gui.Hauptmenu.model;
 import java.awt.AWTException;
 import java.awt.BorderLayout;
 import java.awt.Desktop;
 import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -17,16 +20,47 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.TableModel;
+import javax.swing.table.DefaultTableModel;
 
 
 
 
 
-public class Hauptmenu {
+public class Hauptmenu extends JFrame{
 
-    static final int x = 21; 
+    static final int x = 14; 
     static final int y = 29;
-    static JTable table = new JTable(x,y);
+    static final TableModel model = new DefaultTableModel(x, y);
+    static final int testx = 3;
+    static final int testy = 5;
+    static JTable table = new JTable(model) {
+        public boolean isCellEditable(int x, int y) {
+            if(x > 1 && y > 0) { //wo Benutzereingaben? - Philipp
+                return true;
+            } else {
+                return false;
+            }
+        }
+        public Rectangle getCellRect(int x, int y, boolean b) {
+            if(x == testx && y ==testy) {
+                return super.getCellRect(x, y - 1, b);
+            }
+            return super.getCellRect(x, y, b);
+        }
+        public int rowAtPoint(Point point) {
+            /*int width = table.getTableHeader().getColumnModel().getColumn((int)point.getY()).getWidth();
+            if(point.getY() >= width * testy && point.getY() < width * (testy + 1)) {
+                Point pnt = new Point((int)point.getX(), (int)point.getY() - width);
+                return super.rowAtPoint(pnt);
+            } */ //funktioniert noch nicht ganz so gut - Philipp
+            return super.rowAtPoint(point);
+        }
+        public int columnAtPoint(Point point) {
+            return super.columnAtPoint(point);
+        }
+        
+    };
     public static void main(String[] args) {
     //Fenster erschaffen
 	final JFrame frame1 = new JFrame("ABI-Rechner");		
@@ -67,13 +101,12 @@ public class Hauptmenu {
 	table.setValueAt("LK / GK", 1,0 );
     table.setValueAt("LK", 2, 0);
     table.setValueAt("LK", 3, 0);
-    table.setValueAt("GK", 4, 0);
-    table.setValueAt("GK", 5, 0);
-    table.setValueAt("GK", 6, 0);
-    table.setValueAt("GK", 7, 0);
+        for (int i = 4; i < x; i++) {
+    table.setValueAt("GK", i, 0);
+        }
 	table.setValueAt("Fach", 1,1 );
-	table.setValueAt("Prüfung?", 1,2 );
-    table.setValueAt("\u2713", 2,2 ); //schmales Häkchen (fettes: \u2714)
+	table.setValueAt("Prï¿½fung?", 1,2 );
+    table.setValueAt("\u2713", 2,2 ); //schmales Hï¿½kchen (fettes: \u2714)
 	table.setValueAt("Semester 11/I", 0,3 );
 	table.setValueAt("Semester 11/II", 0,9 );
 	table.setValueAt("Semester 12/I", 0,15 );
@@ -124,17 +157,17 @@ public class Hauptmenu {
 	file.add(exit);
 	    
 	//Items in Edit
-	JMenuItem rueck = new JMenuItem("Rückgängig");
+	JMenuItem rueck = new JMenuItem("Rï¿½ckgï¿½ngig");
 	edit.add(rueck);
 	JMenuItem wied = new JMenuItem("Wiederherstellen");
 	edit.add(wied);
-	JMenuItem lö = new JMenuItem("Löschen");
-	edit.add(lö);
+	JMenuItem lo = new JMenuItem("Lï¿½schen");
+	edit.add(lo);
 	JMenuItem kop = new JMenuItem("Kopieren");
 	edit.add(kop);
-	JMenuItem einf = new JMenuItem("Einfügen");
+	JMenuItem einf = new JMenuItem("Einfï¿½gen");
 	edit.add(einf);
-	JMenuItem ausw = new JMenuItem("Alles auswählen");
+	JMenuItem ausw = new JMenuItem("Alles auswï¿½hlen");
 	edit.add(ausw);
 	  
 	//Items in Help
@@ -146,7 +179,7 @@ public class Hauptmenu {
 	    
 	//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::://
 	    
-	//Klick-Listener für Checkmarks (Spalte 3 bzw 2)
+	//Klick-Listener fï¿½r Checkmarks (Spalte 3 bzw 2)
        /*ListSelectionModel newmodel = table.getSelectionModel(); 
         newmodel.addListSelectionListener(new ListSelectionListener() { 
         public void valueChanged(ListSelectionEvent e) { 
@@ -199,13 +232,13 @@ public class Hauptmenu {
             }
     	});
 	    
-	//LöschenItem
-	lö.addActionListener(new ActionListener(){;
+	//Lï¿½schenItem
+	lo.addActionListener(new ActionListener(){;
     	public void actionPerformed(ActionEvent e){
             int i=table.getSelectedRow();
             if(i>=0){
-    		table.removeAll(); // kurzzeitig gelöscht aber nach zellenwechsel wieder da -> muss direkt neu überschrieben werden - Lukas
-    			//hier überschreiben? - Lukas
+    		table.removeAll(); // kurzzeitig gelï¿½scht aber nach zellenwechsel wieder da -> muss direkt neu ï¿½berschrieben werden - Lukas
+    			//hier ï¿½berschreiben? - Lukas
             }
             else{
     		System.out.println("Keine vorhandenen Daten, die gelï¿½scht werden kï¿½nnen");
@@ -214,7 +247,7 @@ public class Hauptmenu {
     	});
 	    
 	    
-	//AllesAuswählenItem
+	//AllesAuswï¿½hlenItem
 	ausw.addFocusListener(new FocusListener(){	
 		public void focusGained(FocusEvent e) {
 			table.selectAll(); // es soll wenn fertig allen Inhalt der Tabelle markieren - Lukas
@@ -238,13 +271,13 @@ public class Hauptmenu {
     frame2.setVisible(false); 
 	    
 
-	//LanguageFenster öffnen (frame 2)
+	//LanguageFenster ï¿½ffnen (frame 2)
 	language.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent arg0) {
             frame2.setVisible(true);
 	}});
         
-        //Neue Rechnung öffnen (frame 3)
+        //Neue Rechnung ï¿½ffnen (frame 3)
 	anew.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent arg0) {
             frame3.setVisible(true);
